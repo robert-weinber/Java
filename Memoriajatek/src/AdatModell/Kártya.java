@@ -1,9 +1,5 @@
 package AdatModell;
 
-/**
- *
- * @author Wolfram
- */
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -51,22 +47,16 @@ public class Kártya extends JButton{
     public void setHáttér(ImageIcon háttér){
         this.háttér = háttér;
         this.setIcon(háttér);
-//JLabel label = new JLabel("", háttér, JLabel.CENTER);
-//this.add( label, BorderLayout.CENTER );
     }
 
     public void setFelfordít(){
         this.felfordítva=true;
         this.setIcon(szimbólum);
-//JLabel label = new JLabel("", szimbólum, JLabel.CENTER);
-//this.add( label, BorderLayout.CENTER );
     }
     
     public void setVisszafordít(){
         this.felfordítva=false;
         this.setIcon(háttér);
-//JLabel label = new JLabel("", háttér, JLabel.CENTER);
-//this.add( label, BorderLayout.CENTER );
     }
     
     public boolean getFelfordítva(){

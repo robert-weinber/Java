@@ -34,10 +34,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
-/**
- *
- * @author Wolfram
- */
+
 public class Modell {
 
     public int fordításokSzáma = 0, megoldva = 0, RÁCS = 4, egyes = 0, kettes = 0,
@@ -73,10 +70,10 @@ public class Modell {
             } catch (IOException ex) {
                 Logger.getLogger(Modell.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     });
-    
+
     public void audioBetöltés(File hang){
         try {
             audioStream = AudioSystem.getAudioInputStream(hang);
@@ -87,63 +84,20 @@ public class Modell {
             Logger.getLogger(Modell.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void lejátszás() throws LineUnavailableException, IOException{
         audioClip.open(audioStream);
         audioClip.start();
-        
-//        hangTimer.start();
+
     }
 
-    public void képBeolvasás(String képhelye) throws IOException {   
+    public void képBeolvasás(String képhelye) throws IOException {
         File mappa = new File(képhelye);
         képFájlok = mappa.listFiles();
-//        new FilenameFilter() {
-//            private char[][] extensions;
-//
-//             private ExtensionsFilter(String[] extensions)
-//    {
-//        int length = extensions.length;
-//        this.extensions = new char[length][];
-//        for (String s : extensions)
-//        {
-//            this.extensions[--length] = s.toCharArray();
-//        }
-//    }
-//
-//    @Override
-//    public boolean accept(File file)
-//    {
-//        char[] path = file.getPath().toCharArray();
-//        for (char[] extension : extensions)
-//        {
-//            if (extension.length > path.length)
-//            {
-//                continue;
-//            }
-//            int pStart = path.length - 1;
-//            int eStart = extension.length - 1;
-//            boolean success = true;
-//            for (int i = 0; i <= eStart; i++)
-//            {
-//                if ((path[pStart - i] | 0x20) != (extension[eStart - i] | 0x20))
-//                {
-//                    success = false;
-//                    break;
-//                }
-//            }
-//            if (success)
-//                return true;
-//        }
-//        return false;
-//    }
-//        } );
         //////////////////////////////////////////KEVERÉS
         Random rnd = ThreadLocalRandom.current();
-//     Collections.shuffle(parossag);
         for (int i = képFájlok.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
-            // Sima cserealgoritmus
             File a = képFájlok[index];
             képFájlok[index] = képFájlok[i];
             képFájlok[i] = a;
@@ -154,22 +108,20 @@ for (int i = 0; i < KARTYADB/2; i++)
 {
     if(i<képFájlok.length){
         képTömb[i] = new ImageIcon(képFájlok[i].getPath());
-        Image img = képTömb[i].getImage() ;  
-        Image ujImg = img.getScaledInstance( kártyaSzélesség, kártyaMagasság,  java.awt.Image.SCALE_SMOOTH ) ;  
+        Image img = képTömb[i].getImage() ;
+        Image ujImg = img.getScaledInstance( kártyaSzélesség, kártyaMagasság,  java.awt.Image.SCALE_SMOOTH ) ;
         képTömb[i] = new ImageIcon( ujImg );
 }
-}        
+}
 
         háttérKép = new ImageIcon("./src/kepek/proba/hatter.png");
-        Image img = háttérKép.getImage() ;  
-        Image ujImg = img.getScaledInstance( kártyaSzélesség, kártyaMagasság,  java.awt.Image.SCALE_SMOOTH ) ;  
+        Image img = háttérKép.getImage() ;
+        Image ujImg = img.getScaledInstance( kártyaSzélesség, kártyaMagasság,  java.awt.Image.SCALE_SMOOTH ) ;
         háttérKép = new ImageIcon( ujImg );
     }
 
     public void visszafordít() {            //ELTÜNTETI A SZÁMOKAT 3 SEC UTÁN
-//        k1.setText("");
         k1.setVisszafordít();
-//        k2.setText("");
         k2.setVisszafordít();
         if (visszafordít.isRunning()) {
             visszafordít.stop();
@@ -178,17 +130,12 @@ for (int i = 0; i < KARTYADB/2; i++)
 
     public void configBetölt() throws FileNotFoundException,
             IOException, ClassNotFoundException, ClassCastException {
-        
+
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(configFájl), "ISO-8859-1"))) {
 
-//        config= new String[4];
             String adat;
             while ((adat = br.readLine()) != null) {
                 config = adat.split(";");
-//                System.out.println(config[0]);
-//                System.out.println(config[1]);
-//                System.out.println(config[2]);
-//                System.out.println(config[3]);
                 String kdb = config[0];
                 String párszám = config[1];
                 String időmax = config[2];
@@ -197,14 +144,10 @@ for (int i = 0; i < KARTYADB/2; i++)
             }
 
         } catch (EOFException e) {
-        
-        
-//        System.out.println(config[0]);
-//        System.out.println(config[1]);
-//        System.out.println(config[2]);
-//        System.out.println(config[3]);
+
+        System.out.println(e);
         }
-    
+
     }
 
     public void configMent() throws IOException {
@@ -306,7 +249,7 @@ for (int i = 0; i < KARTYADB/2; i++)
 
     }
 
-    public int getEredmény() {     // PONTSZÁMÍTÁS (VALAMIÉRT MAJDNEM MINDÍG 0 JÖN KI...:D)
+    public int getEredmény() {     // PONTSZÁMÍTÁS
         int e = (int) Math.round((float) (10 * KARTYADB / 2 - fordításokSzáma - elteltIdő));
         System.out.println(e);
         return (e > 0) ? e : 0;
@@ -344,7 +287,6 @@ for (int i = 0; i < KARTYADB/2; i++)
         }
         //KEVERÉS
         Random rnd = ThreadLocalRandom.current();
-//     Collections.shuffle(parossag);
         for (int i = parossag.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
             // Sima cserealgoritmus

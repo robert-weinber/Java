@@ -1,10 +1,6 @@
 package AdatModell;
 
 
-/**
- *
- * @author Wolfram
- */
 
 @SuppressWarnings("serial")
 public class Játékos{

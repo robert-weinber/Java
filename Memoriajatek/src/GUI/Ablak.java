@@ -1,9 +1,5 @@
 package GUI;
 
-/**
- *
- * @author Wolfram
- */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -58,17 +54,15 @@ public class Ablak extends javax.swing.JFrame {
         this.modell = new AdatModell.Modell();
         ablak = this.getContentPane();
         this.setTitle("Memóra Játék");
-//        this.setResizable(false);
         
     }
 
-    private void egyFőre() {
+    private void egyFőre() { // 1P mód
         modell.játékosszám = 1;
         modell.elteltIdő = 0;
         lbKijelzőBal.setText("Egyjátékos mód");
         lbKijelzőJobb.setText("0 próbálkozás");
         lbKijelzőKozep.setText("");
-//        controller.showJátékMező();
         System.out.println("Időlimit: " + modell.IDŐLIMIT);
         System.out.println("Max Párok száma: " + modell.MAXPÁR);
         System.out.println("Rács: " + modell.RÁCS);
@@ -78,7 +72,7 @@ public class Ablak extends javax.swing.JFrame {
         időzítő.start();
     }
 
-    public void kétFőre() {
+    public void kétFőre() { // 2P mód
         modell.játékosszám = 2;
         modell.Egyes.setPontszám(0);
         modell.Egyes.setAktív(true);
@@ -96,28 +90,22 @@ public class Ablak extends javax.swing.JFrame {
         kiosztas();
     }
 
-    public void kiosztas() {
+    public void kiosztas() { // Új leosztás
         modell.kártyaTömb = new Kártya[modell.KARTYADB];
         modell.megoldva = 0;
         pnKirakós.setLayout(new GridLayout(modell.RÁCS, 0));
-//        pnKirakós.setSize(modell.kártyaSzélesség*modell.RÁCS, modell.kártyaMagasság*modell.RÁCS);
         
         for (int i = 0; i < modell.KARTYADB; i++) {
             Kártya k = new Kártya();
             k.setId(i);
             k.setSize(new Dimension(100,100));
             k.setPárSzáma(modell.parossag[i]);
-//            k.setBackground(null);
             k.setMargin(new Insets(0, 0, 0, 0));
             k.setBorder(null);
             k.setHáttér(modell.háttérKép);
-//                    new ImageIcon("./src/kepek/proba/hatter.png"/*modell.háttérKép*/));
             k.setSzimbólum(modell.képTömb[k.getPárSzáma()-1]);
-//            k.setFont(new Font("Tahoma", Font.BOLD, 18));
-//            k.setText("📫");
             modell.kártyaTömb[i] = k;
             pnKirakós.add(k);
-//            k.addMouseListener(new MouseListener() {
                 k.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -140,9 +128,7 @@ public class Ablak extends javax.swing.JFrame {
 
     }
 
-    private void értékel(Kártya k) {
-//        System.out.println(k.getWidth()+" széles, "+k.getHeight()+" magas");
-//        k.setText(k.getPárSzáma() + "");
+    private void értékel(Kártya k) { // Lépés kiértékelése
         k.setFelfordít();
         try {
             modell.audioBetöltés(modell.hangFájlFordítás);
@@ -151,15 +137,13 @@ public class Ablak extends javax.swing.JFrame {
             Logger.getLogger(Ablak.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (1 == modell.sorrend) {
-            if (modell.k1 != null && modell.k1.getFelfordítva()/*getText().equals("")*/ && modell.k1.isEnabled()) {
-//                modell.k1.setText("");
+            if (modell.k1 != null && modell.k1.getFelfordítva() && modell.k1.isEnabled()) {
                 modell.k1.setVisszafordít();
             }
             if (modell.visszafordít.isRunning()) {
                 modell.visszafordít.stop();
             }
             if (modell.k2 != null && modell.k2.getFelfordítva() && modell.k2.isEnabled()) {
-//                modell.k2.setText("");
                 modell.k2.setVisszafordít();
             }
             if (modell.visszafordít.isRunning()) {
@@ -219,7 +203,7 @@ public class Ablak extends javax.swing.JFrame {
         }
     }
 
-    public void vége(int idő) {
+    public void vége(int idő) { // Játék végi kiértékelés
         if (modell.játékosszám == 1) {
             időzítő.stop();
             int eredmény = modell.getEredmény();
@@ -254,15 +238,12 @@ public class Ablak extends javax.swing.JFrame {
             CardLayout cl = (CardLayout) (AblakKezelo.getLayout());
             cl.show(AblakKezelo, "eredmeny");
             this.pack();
-//            this.setSize(new Dimension(500, 500));
-//            controller.showEredmény();
         }
         for (Kártya kártya : modell.kártyaTömb) {
             pnKirakós.remove(kártya);
         }
         try {
-            //                modell.audioClip.close();
-            modell.audioStream.close();
+            modell.audioStream.close(); // Audio lejátszása
             System.out.println("audio vége");
         } catch (IOException ex) {
             Logger.getLogger(Ablak.class.getName()).log(Level.SEVERE, null, ex);
@@ -270,7 +251,7 @@ public class Ablak extends javax.swing.JFrame {
                 
     }
 
-    private void Toplista(int e) {
+    private void Toplista(int e) { // Ugrás a toplistára
         modell.toplistáhozAd(e);
         modell.toplistaMent();
         jlToplista.setModel(modell.toplistaKiír());
@@ -278,7 +259,7 @@ public class Ablak extends javax.swing.JFrame {
         cl.show(AblakKezelo, "toplista");
     }
 
-    private void Elment() {
+    private void Elment() { // Saját kép
         int KártyaSzámIndex = cbKártyaszám.getSelectedIndex();
         int MaxPárIndex = cbMaxPárok.getSelectedIndex();
         int IdőIndex = cbIdő.getSelectedIndex();
@@ -298,8 +279,7 @@ public class Ablak extends javax.swing.JFrame {
     
     
     
-    private void ablakNyitás(){
-//                if(!modell.configFájl.exists()){
+    private void ablakNyitás(){ // Alap képek betöltése
                 modell.képHelyek[0]="./src/kepek/valami";
                 modell.képHelyek[1]="./src/kepek/ezmegaz";
                 modell.képHelyek[2]="./src/kepek/ilyesmi";
@@ -319,8 +299,6 @@ public class Ablak extends javax.swing.JFrame {
                 String képhelye="./src/kepek/valami";
                 if(cbKépek.getSelectedIndex()!=4)
                 képhelye=modell.képHelyek[cbKépek.getSelectedIndex()];
-//                else
-//                képhelye="sajátmappa";
                 try {
                     modell.képBeolvasás(képhelye);
                 } catch (IOException ex) {
@@ -331,14 +309,13 @@ public class Ablak extends javax.swing.JFrame {
                 modell.audioBetöltés(modell.hangFájlKiosztás);
     }
 
-    public void initComponents(Container Felület) {
+    public void initComponents(Container Felület) { // UI Felépítése
         AblakKezelo = new JPanel(new CardLayout());
         ActionListener Főmenübe = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 CardLayout cl = (CardLayout) (AblakKezelo.getLayout());
                 cl.show(AblakKezelo, "fomenu");
-//                controller.showFőMenü();
             }
         };
         Font Címsor = new Font("Tahoma", 1, 18);
@@ -443,7 +420,6 @@ public class Ablak extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 CardLayout cl = (CardLayout) (AblakKezelo.getLayout());
                 cl.show(AblakKezelo, "jatekmezo");
-//        controller.showJátékMező();
                 egyFőre();
             }
         });
@@ -455,7 +431,6 @@ public class Ablak extends javax.swing.JFrame {
                 CardLayout cl = (CardLayout) (AblakKezelo.getLayout());
                 cl.show(AblakKezelo, "jatekmezo");
                 kétFőre();
-//        controller.showJátékMező();
 
             }
         });
@@ -526,14 +501,14 @@ public class Ablak extends javax.swing.JFrame {
     chooser.setDialogTitle("Saját képek kiválasztása...");
     chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     //
-    // disable the "All files" option.
+    // "All files" kikapcsolása.
     //
     chooser.setAcceptAllFileFilterUsed(false);
     //    
     if (chooser.showOpenDialog(ablak) == JFileChooser.APPROVE_OPTION) { 
       System.out.println("getCurrentDirectory(): " +  chooser.getCurrentDirectory());
       System.out.println("getSelectedFile() : "  +  chooser.getSelectedFile());
-      modell.sajátKépek/*képHelyek[4]*/=chooser.getSelectedFile().getPath();
+      modell.sajátKépek=chooser.getSelectedFile().getPath();
       }
     else {
         cbKépek.setSelectedIndex(0);
@@ -742,11 +717,6 @@ public class Ablak extends javax.swing.JFrame {
             }
         });
         
-//        jpJatekmezo.setPreferredSize(new Dimension(400, 600));
-//        jpJatekmezo.setLayout(new GridLayout(3, 1));
-//        jpJatekmezo.add(pnKijelző, rootPane, 0);
-//        jpJatekmezo.add(pnKirakós, rootPane, 1);
-//        jpJatekmezo.add(btFeladás, rootPane, 2);
         
         javax.swing.GroupLayout jpJatekmezoLayout = new GroupLayout(jpJatekmezo);
         jpJatekmezo.setLayout(jpJatekmezoLayout);
@@ -754,20 +724,9 @@ public class Ablak extends javax.swing.JFrame {
                 .addComponent(pnKirakós)
                 .addComponent(btFeladás, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnKijelző)
-//                .addGroup(jpJatekmezoLayout.createSequentialGroup()
-//                        .addComponent(lbKijelzőBal)
-//                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-//                        .addComponent(lbKijelzőKozep)
-//                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-//                        .addComponent(lbKijelzőJobb)
-//                )
         );
         jpJatekmezoLayout.setVerticalGroup(jpJatekmezoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(jpJatekmezoLayout.createSequentialGroup()
-//                        .addGroup(jpJatekmezoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-//                                .addComponent(lbKijelzőBal)
-//                                .addComponent(lbKijelzőJobb)
-//                                .addComponent(lbKijelzőKozep))
                         .addComponent(true, pnKijelző)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnKirakós)
@@ -885,48 +844,6 @@ public class Ablak extends javax.swing.JFrame {
         AblakKezelo.add(jpLeiras, "leiras");
         Felület.add(AblakKezelo, BorderLayout.CENTER);
     }
-    
-//    @Override
-//public void start(final Stage stage) throws Exception {
-//
-//    stage.setTitle("Area Chart Sample");
-//    Group root = new Group();
-//    Scene scene  = new Scene(root, 250, 250);
-//    stage.setResizable(false);
-//
-//
-//    Timer animTimer = new Timer();
-//    animTimer.scheduleAtFixedRate(new TimerTask() {
-//
-//        int i=0;
-//
-//        @Override
-//        public void run() {
-//            if (i<100){
-//
-//            stage.setWidth(stage.getWidth()+3);
-//            stage.setHeight(stage.getHeight()+3);
-//            }
-//            else {
-//                this.cancel();
-//            }
-//
-//            i++;
-//        }
-//    }, 2000, 25);
-//
-//    stage.setScene(scene);
-//    stage.show();
-//}
-//    Node[][] field;
-//    public void rotateField(){
-//        ScaleTransition st= new ScaleTransition(Duration.millis(3000), null);
-//        st.
-//    RotateTransition rt = new RotateTransition(Duration.millis(3000), field[4][4]);
-//    rt.setByAngle(360);
-//    rt.setCycleCount(1);
-//    rt.play();
-//}
 
     private JPanel AblakKezelo;
     //FŐMENÜ
