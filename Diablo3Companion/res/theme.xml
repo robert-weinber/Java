@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource majorVersion="1" minorVersion="7" useXmlUI="false">
+    <theme name="DiabloMenu">
+        <val key="@includeNativeBool" value="true" />
+        <val key="Menu.bgImage" value="FomenuBG" />
+        <val key="Menu.bgType" value="1" />
+        <val key="Title.sel#fgColor" value="ff0000" />
+        <font key="Title.sel#font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="4" actualSize="24.0" />
+        <val key="tfBNetTag.bgImage" value="null" />
+        <val key="tfBNetTag.bgType" value="1" />
+    </theme>
+    <image name="FomenuBG"  />
+    <ui name="Main" />
+    <image name="tfBNetTag.borderBottom_1.png" type="multi"  />
+    <image name="tfBNetTag.borderBottomL_1.png" type="multi"  />
+    <image name="tfBNetTag.borderBottomR_1.png" type="multi"  />
+    <image name="tfBNetTag.borderCenter_1.png" type="multi"  />
+    <image name="tfBNetTag.borderLeft_1.png" type="multi"  />
+    <image name="tfBNetTag.borderRight_1.png" type="multi"  />
+    <image name="tfBNetTag.borderTop_1.png" type="multi"  />
+    <image name="tfBNetTag.borderTopL_1.png" type="multi"  />
+    <image name="tfBNetTag.borderTopR_1.png" type="multi"  />
+    <theme name="Theme">
+        <val key="@includeNativeBool" value="true" />
+    </theme>
+</resource>

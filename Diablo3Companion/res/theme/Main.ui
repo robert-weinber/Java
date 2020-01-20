@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="Main" cloudDestinationProperty="Main" enabled="true" title="Diablo 3 Armory" cyclicFocus="false" >
+  <component type="Label" name="Label" cloudDestinationProperty="Label" text="DIABLO ARMORY" >
+  </component>
+  <component type="Button" name="Button" cloudDestinationProperty="Button" text="Search" >
+  </component>
+  <component type="Label" name="Label1" cloudDestinationProperty="Label1" text="BattleTag:" >
+  </component>
+  <component type="TextField" name="TextField" cloudBoundProperty="text" cloudDestinationProperty="TextField" uiid="tfBNetTag" focusable="false" enabled="true" text="" >
+  </component>
+</component>
