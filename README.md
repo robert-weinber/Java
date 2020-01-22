@@ -9,7 +9,7 @@ Java projects I made:
   - Manage status and project lifecycle
   - Internal chat for team members
   - UI Java
-  - Logic mostly trough MySQL procedures for security
+  - Logic mostly through MySQL procedures for security
  
 - Memorygame
 
