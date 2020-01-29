@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package livestreamerrunner;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Wolfram
- */
 class Kedvenc implements Serializable {
     private final String StreamName, StreamLeírás;
     
