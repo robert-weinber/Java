@@ -19,10 +19,6 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Wolfram
- */
 public class LivestreamerRunnerWindow extends javax.swing.JFrame {
     public TreeMap<Integer, Kedvenc> lista = new TreeMap<>();
     private static TreeMap<String,Integer> indexek=new TreeMap<>();
@@ -38,7 +34,6 @@ public class LivestreamerRunnerWindow extends javax.swing.JFrame {
     
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         Name = new javax.swing.JTextField();
@@ -188,9 +183,9 @@ public class LivestreamerRunnerWindow extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayActionPerformed
+    private void PlayActionPerformed(java.awt.event.ActionEvent evt) {
 
         try {
 
@@ -210,9 +205,9 @@ public class LivestreamerRunnerWindow extends javax.swing.JFrame {
         }
 
         System.out.println("Done");
-    }//GEN-LAST:event_PlayActionPerformed
+    }
 
-    private void btMentésActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMentésActionPerformed
+    private void btMentésActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             KedvencekhezAd();
             Ment();
@@ -223,21 +218,21 @@ public class LivestreamerRunnerWindow extends javax.swing.JFrame {
         }
         lbMentés.setVisible(true);
         
-    }//GEN-LAST:event_btMentésActionPerformed
+    }
 
-    private void txtLeírásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLeírásActionPerformed
-        // TODO add your handling code here:
+    private void txtLeírásActionPerformed(java.awt.event.ActionEvent evt) {
+
         
-    }//GEN-LAST:event_txtLeírásActionPerformed
+    }
 
-    private void jlKedvencekMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlKedvencekMouseClicked
-        // TODO add your handling code here:
+    private void jlKedvencekMouseClicked(java.awt.event.MouseEvent evt) {
+
           Name.setText(lista.get(jlKedvencek.getSelectedIndex()).getStreamName());
-//          Name.setText(""+jlKedvencek.getSelectedIndex());
-    }//GEN-LAST:event_jlKedvencekMouseClicked
+
+    }
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        // TODO add your handling code here:
+
         lista.remove(jlKedvencek.getSelectedIndex());
         try {
             Ment();
@@ -246,19 +241,13 @@ public class LivestreamerRunnerWindow extends javax.swing.JFrame {
             Logger.getLogger(LivestreamerRunnerWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_btDeleteActionPerformed
+    }
 
       private void KedvencekMousePressed(java.awt.event.MouseEvent evt) {                                    
-        // TODO add your handling code here:
-//        Name.setText(lista.get(jlKedvencek.getSelectedIndex()).getStreamName()); 
-//          System.out.println(lista.get(jlKedvencek.getSelectedIndex()).getStreamName());
+
     } 
     public static void main(String args[]) {
 
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -275,7 +264,7 @@ public class LivestreamerRunnerWindow extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LivestreamerRunnerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -290,7 +279,7 @@ public class LivestreamerRunnerWindow extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JTextField Name;
     private javax.swing.JButton Play;
     private javax.swing.JComboBox Quality;
@@ -304,7 +293,7 @@ public class LivestreamerRunnerWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbQuality;
     private javax.swing.JTextField txtLeírás;
-    // End of variables declaration//GEN-END:variables
+
 
     private void listaFeltöltés() throws IOException {
         List<String> rajLista = new ArrayList<>(); 
